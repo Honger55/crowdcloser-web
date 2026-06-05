@@ -1,0 +1,1320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Oklahoma Real Estate Market Report — CrowdCloser 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+  :root {
+    --navy: #0f2137;
+    --navy-mid: #1a3c5e;
+    --blue: #2e75b6;
+    --blue-light: #4a90d9;
+    --gold: #c8972a;
+    --gold-light: #e8b84b;
+    --cream: #f9f6f0;
+    --warm-gray: #e8e3da;
+    --text: #1c1c1c;
+    --text-mid: #4a4a4a;
+    --text-light: #7a7a7a;
+    --hot: #d64045;
+    --warm: #e87b35;
+    --cold: #4a90d9;
+    --opportunity: #2a9d5e;
+    --rule: #d4c9b8;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    line-height: 1.7;
+  }
+
+  /* ── MASTHEAD ─────────────────────────────────────────────────── */
+  .masthead {
+    background: var(--navy);
+    padding: 56px 0 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .masthead::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 40px,
+      rgba(46,117,182,.04) 40px,
+      rgba(46,117,182,.04) 80px
+    );
+  }
+  .masthead-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 40px;
+    position: relative;
+  }
+  .brand-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: .18em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .brand-tag::before {
+    content: '';
+    display: block;
+    width: 28px; height: 1px;
+    background: var(--gold);
+  }
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 5vw, 52px);
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.1;
+    margin-bottom: 16px;
+    letter-spacing: -.02em;
+  }
+  h1 span { color: var(--gold); }
+  .masthead-sub {
+    font-size: 17px;
+    color: rgba(255,255,255,.6);
+    font-weight: 300;
+    max-width: 600px;
+    margin-bottom: 32px;
+  }
+  .meta-row {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .meta-pill {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: .1em;
+    color: rgba(255,255,255,.5);
+    text-transform: uppercase;
+    border: 1px solid rgba(255,255,255,.12);
+    padding: 5px 12px;
+    border-radius: 2px;
+  }
+
+  /* ── LAYOUT ───────────────────────────────────────────────────── */
+  .container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  /* ── STAT BAR ─────────────────────────────────────────────────── */
+  .stat-bar {
+    background: var(--navy-mid);
+    padding: 0;
+  }
+  .stat-bar-inner {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-left: 1px solid rgba(255,255,255,.08);
+  }
+  .stat-item {
+    padding: 24px 28px;
+    border-right: 1px solid rgba(255,255,255,.08);
+    border-bottom: 1px solid rgba(255,255,255,.08);
+  }
+  .stat-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.4);
+    margin-bottom: 6px;
+  }
+  .stat-value {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+  .stat-change {
+    font-size: 12px;
+    font-weight: 500;
+  }
+  .stat-change.up { color: var(--gold-light); }
+  .stat-change.down { color: #ff7a7a; }
+
+  /* ── ARTICLE BODY ─────────────────────────────────────────────── */
+  .article-body {
+    padding: 60px 0;
+  }
+  .article-body p {
+    font-size: 16px;
+    color: var(--text-mid);
+    margin-bottom: 20px;
+    max-width: 720px;
+    line-height: 1.8;
+  }
+
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--navy);
+    margin: 52px 0 16px;
+    letter-spacing: -.01em;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--warm-gray);
+  }
+  h3 {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin: 32px 0 12px;
+  }
+
+  .lede {
+    font-size: 19px !important;
+    color: var(--text) !important;
+    font-weight: 400;
+    line-height: 1.7 !important;
+    border-left: 3px solid var(--gold);
+    padding-left: 20px;
+    margin-bottom: 32px !important;
+  }
+
+  /* ── CHART CONTAINERS ─────────────────────────────────────────── */
+  .chart-block {
+    background: #fff;
+    border: 1px solid var(--warm-gray);
+    border-radius: 4px;
+    padding: 28px;
+    margin: 36px 0;
+  }
+  .chart-title {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--navy);
+    margin-bottom: 4px;
+  }
+  .chart-sub {
+    font-size: 12px;
+    color: var(--text-light);
+    margin-bottom: 20px;
+    font-family: 'DM Mono', monospace;
+  }
+  .chart-wrap {
+    position: relative;
+    height: 260px;
+  }
+
+  /* ── DATA TABLES ──────────────────────────────────────────────── */
+  .data-table-wrap {
+    margin: 36px 0;
+    overflow-x: auto;
+  }
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+  .data-table thead tr {
+    background: var(--navy);
+  }
+  .data-table thead th {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,.7);
+    padding: 12px 16px;
+    text-align: left;
+    font-weight: 400;
+    white-space: nowrap;
+  }
+  .data-table tbody tr:nth-child(even) { background: #faf8f5; }
+  .data-table tbody tr:hover { background: #f0ece4; }
+  .data-table td {
+    padding: 11px 16px;
+    border-bottom: 1px solid var(--warm-gray);
+    color: var(--text-mid);
+    vertical-align: middle;
+  }
+  .data-table td:first-child {
+    font-weight: 600;
+    color: var(--navy);
+  }
+  .badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 2px;
+    white-space: nowrap;
+  }
+  .badge-hot { background: rgba(214,64,69,.12); color: var(--hot); }
+  .badge-warm { background: rgba(232,123,53,.12); color: var(--warm); }
+  .badge-cold { background: rgba(74,144,217,.12); color: var(--cold); }
+  .badge-opp { background: rgba(42,157,94,.12); color: var(--opportunity); }
+  .badge-neutral { background: rgba(120,120,120,.1); color: #666; }
+
+  /* ── ZIP CODE GRID ────────────────────────────────────────────── */
+  .zip-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 16px;
+    margin: 32px 0;
+  }
+  .zip-card {
+    background: #fff;
+    border: 1px solid var(--warm-gray);
+    border-radius: 4px;
+    padding: 20px;
+    border-top: 3px solid transparent;
+    transition: transform .15s;
+  }
+  .zip-card:hover { transform: translateY(-2px); }
+  .zip-card.hot { border-top-color: var(--hot); }
+  .zip-card.warm { border-top-color: var(--warm); }
+  .zip-card.cold { border-top-color: var(--cold); }
+  .zip-card.opportunity { border-top-color: var(--opportunity); }
+  .zip-code {
+    font-family: 'DM Mono', monospace;
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--navy);
+    margin-bottom: 2px;
+  }
+  .zip-name {
+    font-size: 12px;
+    color: var(--text-light);
+    margin-bottom: 14px;
+  }
+  .zip-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 2px;
+  }
+  .zip-stats {
+    font-size: 12px;
+    color: var(--text-light);
+    margin-bottom: 12px;
+    line-height: 1.6;
+  }
+  .zip-note {
+    font-size: 12px;
+    color: var(--text-mid);
+    line-height: 1.5;
+    padding-top: 12px;
+    border-top: 1px solid var(--warm-gray);
+  }
+
+  /* ── CALLOUT BOXES ────────────────────────────────────────────── */
+  .callout {
+    padding: 24px 28px;
+    border-radius: 4px;
+    margin: 32px 0;
+    border-left: 4px solid;
+  }
+  .callout-investor {
+    background: rgba(26,60,94,.05);
+    border-color: var(--navy-mid);
+  }
+  .callout-investor .callout-head {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--navy);
+    margin-bottom: 8px;
+    font-weight: 500;
+  }
+  .callout-investor p {
+    font-size: 14px !important;
+    color: var(--navy) !important;
+    margin-bottom: 0 !important;
+  }
+  .callout-opp {
+    background: rgba(42,157,94,.06);
+    border-color: var(--opportunity);
+  }
+  .callout-opp .callout-head { color: var(--opportunity); }
+  .callout-opp p { color: #1c4a33 !important; }
+
+  /* ── LEGEND ───────────────────────────────────────────────────── */
+  .legend-row {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 12px;
+    color: var(--text-mid);
+    font-weight: 500;
+  }
+  .legend-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* ── SECTION DIVIDER ──────────────────────────────────────────── */
+  .section-divider {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 60px 0 8px;
+  }
+  .section-divider::before, .section-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--warm-gray);
+  }
+  .section-divider span {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--text-light);
+    white-space: nowrap;
+  }
+
+  /* ── CTA SECTION ──────────────────────────────────────────────── */
+  .cta-section {
+    background: var(--navy);
+    margin: 60px 0 0;
+    padding: 64px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-section::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 40px,
+      rgba(46,117,182,.04) 40px,
+      rgba(46,117,182,.04) 80px
+    );
+    pointer-events: none;
+  }
+  .cta-inner {
+    max-width: 640px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+  }
+  .cta-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+  }
+  .cta-eyebrow::before,
+  .cta-eyebrow::after {
+    content: '';
+    display: block;
+    width: 32px; height: 1px;
+    background: var(--gold);
+    opacity: .5;
+  }
+  .cta-headline {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(24px, 4vw, 34px);
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.2;
+    margin-bottom: 18px;
+    letter-spacing: -.01em;
+  }
+  .cta-headline span { color: var(--gold); }
+  .cta-body {
+    font-size: 16px;
+    color: rgba(255,255,255,.65);
+    line-height: 1.75;
+    margin-bottom: 36px;
+    font-weight: 300;
+  }
+  .cta-divider {
+    width: 48px; height: 2px;
+    background: var(--gold);
+    opacity: .4;
+    margin: 0 auto 32px;
+  }
+  .cta-link {
+    display: inline-block;
+    background: transparent;
+    border: 1.5px solid var(--gold);
+    color: var(--gold);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: .04em;
+    padding: 14px 36px;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: background .2s, color .2s;
+  }
+  .cta-link:hover {
+    background: var(--gold);
+    color: var(--navy);
+  }
+  .cta-fine {
+    margin-top: 20px;
+    font-size: 12px;
+    color: rgba(255,255,255,.3);
+    font-family: 'DM Mono', monospace;
+    letter-spacing: .04em;
+  }
+
+  /* ── FOOTER ───────────────────────────────────────────────────── */
+  .footer {
+    background: #080f17;
+    padding: 24px 40px;
+    text-align: center;
+    border-top: 1px solid rgba(255,255,255,.06);
+  }
+  .footer-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    color: rgba(255,255,255,.4);
+    margin-bottom: 4px;
+  }
+  .footer-sub {
+    font-size: 11px;
+    color: rgba(255,255,255,.2);
+  }
+  .footer-url {
+    color: rgba(200,151,42,.5);
+    text-decoration: none;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+  }
+
+  /* Responsive */
+  @media(max-width: 680px) {
+    .stat-bar-inner { grid-template-columns: repeat(2,1fr); }
+    .container { padding: 0 20px; }
+    .masthead-inner { padding: 0 20px; }
+    h1 { font-size: 30px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- MASTHEAD -->
+<header class="masthead">
+  <div class="masthead-inner">
+    <div class="brand-tag">CrowdCloser · Investor Intelligence</div>
+    <h1>Oklahoma Real Estate<br><span>Market Report</span></h1>
+    <p class="masthead-sub">A data-driven breakdown of the OKC and Tulsa markets for active wholesalers and cash buyers — including zip-by-zip heat mapping and where the real opportunities are hiding.</p>
+    <div class="meta-row">
+      <div class="meta-pill">Q2 2026</div>
+      <div class="meta-pill">OKC · Tulsa</div>
+      <div class="meta-pill">Wholesale & Investment Focus</div>
+    </div>
+  </div>
+</header>
+
+<!-- STAT BAR -->
+<div class="stat-bar">
+  <div class="container">
+    <div class="stat-bar-inner">
+      <div class="stat-item">
+        <div class="stat-label">OK State Median</div>
+        <div class="stat-value">$257K</div>
+        <div class="stat-change up">▲ 3.6% YoY</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-label">OKC Median</div>
+        <div class="stat-value">$264K</div>
+        <div class="stat-change up">▲ 1.5–3.7% YoY</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-label">Tulsa Median</div>
+        <div class="stat-value">$245K</div>
+        <div class="stat-change up">▲ 3.2% YoY</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-label">OK Foreclosure Rate</div>
+        <div class="stat-value">1:3,356</div>
+        <div class="stat-change down">▲ Rising — Watch</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ARTICLE -->
+<main class="article-body">
+<div class="container">
+
+  <p class="lede">Oklahoma's real estate market in 2026 is doing something rare: holding steady while most of the country either stagnates or overheats. Prices are up modestly, inventory is tightening, foreclosure activity is ticking upward, and both OKC and Tulsa continue producing deal flow that actually pencils. For wholesalers and cash buyers who know which zip codes to work — and which ones to avoid — this market is quietly one of the better setups in the country right now.</p>
+
+  <p>This report pulls current market data across pricing, velocity, supply, and distressed inventory, then maps it to specific zip codes across Oklahoma City and Tulsa. The goal is simple: give investors an accurate picture of where the market is, where the deals are moving, and where the overlooked opportunity lives.</p>
+
+  <!-- ── SECTION 1 ── -->
+  <h2>The Statewide Picture</h2>
+
+  <p>Oklahoma's median home price reached approximately $256,700 in March 2026 — <strong>up 3.6% year-over-year</strong> according to Redfin, marking eight consecutive quarters of positive appreciation. That's not explosive, but it's also not the kind of slow bleed that kills investor margins. It's the steady drift that keeps ARVs predictable and spreads workable.</p>
+
+  <p>Sales volume has strengthened considerably. <strong>4,255 homes sold statewide in March 2026</strong>, up 10.3% from the same month in 2025 — a meaningful uptick that signals more transactions moving, more buyers active, and more exits available for wholesalers. Homes are spending a median of 62 days on market statewide, up 7 days year-over-year, which suggests a slight softening in velocity at the state level — but that number masks significant differences between zip codes that we'll break down below.</p>
+
+  <p>Total inventory sits at approximately 20,508 homes statewide, up 6.1% year-over-year. Months of supply has moved to roughly 4 months — still below the 5–6 month equilibrium threshold, meaning sellers retain some leverage, but buyers have more room to negotiate than they did in 2022–2023. Homes are selling at <strong>98.17% of list price</strong> on average. That's a market that's balanced, not distorted.</p>
+
+  <!-- Median Price Chart -->
+  <div class="chart-block">
+    <div class="chart-title">Oklahoma Median Sale Price — 2022 to 2026</div>
+    <div class="chart-sub">Statewide single-family residential · Sources: Redfin, Houzeo, Norada Real Estate</div>
+    <div class="chart-wrap">
+      <canvas id="priceChart"></canvas>
+    </div>
+  </div>
+
+  <p>The bottom of the market — condos and distressed properties — runs around $150,000. Standard single-family homes average $267,000. The investor sweet spot for wholesale activity in both OKC and Tulsa has historically been the $80,000–$160,000 acquisition range, where repair margins are available and landlord buyers remain active. That range still exists and deals still flow through it.</p>
+
+  <!-- Key Market Metrics Table -->
+  <div class="data-table-wrap">
+    <div class="chart-title" style="margin-bottom:4px;">Key Market Metrics at a Glance</div>
+    <div class="chart-sub">Q2 2026 · Oklahoma statewide and primary metro comparison</div>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Metric</th>
+          <th>Oklahoma (State)</th>
+          <th>OKC Metro</th>
+          <th>Tulsa Metro</th>
+          <th>Signal</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Median Sale Price</td>
+          <td>$256,700</td>
+          <td>$264,000</td>
+          <td>$245,000</td>
+          <td><span class="badge badge-warm">Stable</span></td>
+        </tr>
+        <tr>
+          <td>YoY Price Change</td>
+          <td>+3.6%</td>
+          <td>+1.5–3.7%</td>
+          <td>+3.2%</td>
+          <td><span class="badge badge-opp">Healthy Growth</span></td>
+        </tr>
+        <tr>
+          <td>Median Days on Market</td>
+          <td>62 days</td>
+          <td>42 days</td>
+          <td>36 days</td>
+          <td><span class="badge badge-warm">Moderate</span></td>
+        </tr>
+        <tr>
+          <td>Months of Supply</td>
+          <td>4.0 months</td>
+          <td>~3.5 months</td>
+          <td>2.7–3.1 months</td>
+          <td><span class="badge badge-warm">Seller-leaning</span></td>
+        </tr>
+        <tr>
+          <td>Sale-to-List Ratio</td>
+          <td>98.17%</td>
+          <td>~98%</td>
+          <td>97.25–98.4%</td>
+          <td><span class="badge badge-neutral">Balanced</span></td>
+        </tr>
+        <tr>
+          <td>Foreclosure Rate</td>
+          <td>1 in 3,356</td>
+          <td>Rising Q1 2026</td>
+          <td>Rising Q1 2026</td>
+          <td><span class="badge badge-opp">Deal Flow ↑</span></td>
+        </tr>
+        <tr>
+          <td>Avg Cap Rate (Investor)</td>
+          <td>6–8%</td>
+          <td>6–8%</td>
+          <td>6.4–11%+</td>
+          <td><span class="badge badge-opp">Landlord-Friendly</span></td>
+        </tr>
+        <tr>
+          <td>Avg Rent (1BR)</td>
+          <td>~$1,050</td>
+          <td>$920–$1,050</td>
+          <td>~$1,065</td>
+          <td><span class="badge badge-warm">Stable Demand</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ── SECTION 2 ── -->
+  <h2>OKC: Two Markets Inside One City</h2>
+
+  <p>Oklahoma City's median sale price sits at approximately <strong>$264,000 as of late 2025 to early 2026</strong>, with projections calling for 3–4% appreciation through the rest of the year. But the citywide number is doing what citywide numbers always do: hiding the real story. OKC is effectively two distinct markets operating simultaneously — a fast-moving core of suburban demand and an overlooked inner corridor where wholesale activity is concentrated and investor margins are real.</p>
+
+  <p>The suburban ring — Edmond, Mustang, Yukon, Moore — is appreciating fastest, driven by family demand, school district quality, and new construction spillover. These zip codes are not wholesale territory. Prices have climbed, competition is retail-heavy, and the distressed inventory that wholesalers depend on simply isn't there at the volumes needed.</p>
+
+  <p>The inner city and northeast corridors tell a different story. Here, prices are lower, days-on-market are longer, motivated sellers are more accessible, and landlord buyers have historically been active. This is where the deals are — and where the foreclosure pipeline is beginning to add volume.</p>
+
+  <!-- OKC Zip Code Chart -->
+  <div class="chart-block">
+    <div class="chart-title">OKC Zip Code Median Home Values — Investor Range Focus</div>
+    <div class="chart-sub">Zillow estimates, Q1–Q2 2026 · Sorted by median value</div>
+    <div class="chart-wrap" style="height:310px;">
+      <canvas id="okcZipChart"></canvas>
+    </div>
+  </div>
+
+  <h3>OKC Zip Code Heat Map</h3>
+  <div class="legend-row">
+    <div class="legend-item"><div class="legend-dot" style="background:var(--hot)"></div> Hot — fast-moving retail, thin wholesale margins</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--warm)"></div> Active — mixed, workable deals exist</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--cold)"></div> Cold — slow velocity, high DOM</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--opportunity)"></div> Opportunity — undervalued, investor activity building</div>
+  </div>
+
+  <div class="zip-grid">
+    <div class="zip-card hot">
+      <div class="zip-code">73013 / 73120</div>
+      <div class="zip-name">Edmond / NW OKC</div>
+      <div class="zip-price">$350K–$475K</div>
+      <div class="zip-stats">DOM: 25–35 days · Supply: tight<br>Price growth: 4–5% YoY</div>
+      <span class="badge badge-hot">Hot — Retail</span>
+      <p class="zip-note">Strong family demand, near-zero distressed inventory. Retail buyers dominate. Wholesalers rarely find workable margins here unless they have a very specific motivated-seller pipeline. Exit to owner-occupants possible but competitive.</p>
+    </div>
+    <div class="zip-card hot">
+      <td></td>
+      <div class="zip-code">73160 / 73170</div>
+      <div class="zip-name">Moore / South OKC</div>
+      <div class="zip-price">$270K–$340K</div>
+      <div class="zip-stats">DOM: 30–40 days · Supply: moderate<br>High transaction volume</div>
+      <span class="badge badge-hot">Hot — Suburban</span>
+      <p class="zip-note">Moore remains one of the most active transactional zip codes in the metro. Flippers operate here when they can find product, but inventory is tight sub-$200K. 73160 has the highest auction property count in the metro — watch this one.</p>
+    </div>
+    <div class="zip-card warm">
+      <div class="zip-code">73107</div>
+      <div class="zip-name">Capitol Hill / West OKC</div>
+      <div class="zip-price">~$157K</div>
+      <div class="zip-stats">DOM: 45–60 days · Mixed inventory<br>Active investor presence</div>
+      <span class="badge badge-warm">Active — Investor</span>
+      <p class="zip-note">One of the more active wholesale corridors in the city. Affordable price point, established landlord buyer base, and consistent distressed inventory from aging 1950s–1970s stock. Flippers are active here. Entry pricing allows real margin.</p>
+    </div>
+    <div class="zip-card warm">
+      <div class="zip-code">73106</div>
+      <div class="zip-name">Midtown / Heritage Hills Adjacent</div>
+      <div class="zip-price">~$207K</div>
+      <div class="zip-stats">DOM: 35–55 days · Revitalization zone<br>Mix of retail and investor</div>
+      <span class="badge badge-warm">Active — Mixed</span>
+      <p class="zip-note">Midtown OKC has seen sustained reinvestment. Retail buyers are entering neighborhoods that used to be purely investor territory. That's a double-edged sword — exit values are improving, but acquisition prices are following. Still workable for the right product.</p>
+    </div>
+    <div class="zip-card opportunity">
+      <div class="zip-code">73111</div>
+      <div class="zip-name">NE OKC / Lincoln Terrace Area</div>
+      <div class="zip-price">~$97K–$165K</div>
+      <div class="zip-stats">DOM: 72–76 days · Thin retail demand<br>High distressed inventory</div>
+      <span class="badge badge-opp">Opportunity</span>
+      <p class="zip-note">Low price point, high distressed inventory, and slow retail velocity — but landlord buyers are active and Section 8 demand supports rental income. Wholesale deals in the $45K–$80K acquisition range can pencil well for buy-and-hold buyers. Not for flippers. Know your exit before you contract.</p>
+    </div>
+    <div class="zip-card opportunity">
+      <div class="zip-code">73117</div>
+      <div class="zip-name">NE OKC / Springlake</div>
+      <div class="zip-price">~$105K–$192K</div>
+      <div class="zip-stats">DOM: 101–129 days · Very slow<br>New construction present</div>
+      <span class="badge badge-opp">Opportunity — Patient</span>
+      <p class="zip-note">Highest days-on-market of any OKC investor zip code, which signals weak retail demand — but new construction is trickling in, suggesting some developers see long-term value. Best suited for wholesalers with buy-and-hold buyers who can stomach a longer hold. Watch this corridor over the next 18–24 months.</p>
+    </div>
+    <div class="zip-card cold">
+      <div class="zip-code">73108 / 73129</div>
+      <div class="zip-name">SW OKC / SE OKC</div>
+      <div class="zip-price">$80K–$104K</div>
+      <div class="zip-stats">DOM: 80–100+ days · Very slow<br>Low transaction volume</div>
+      <span class="badge badge-cold">Cold</span>
+      <p class="zip-note">Entry prices are low but exit demand is also low. The risk isn't acquisition — it's finding a qualified buyer who will close. REO values in 73129 average under $37K, indicating lender-owned inventory that the market isn't absorbing quickly. Experienced investors with specific landlord buyers can still work here, but it's not a beginner market.</p>
+    </div>
+    <div class="zip-card warm">
+      <div class="zip-code">73115</div>
+      <div class="zip-name">Southeast OKC / Midwest City Adjacent</div>
+      <div class="zip-price">~$130K–$160K</div>
+      <div class="zip-stats">DOM: 40–55 days · 29 sales/month<br>Higher transaction volume</div>
+      <span class="badge badge-warm">Active — Volume</span>
+      <p class="zip-note">Solid transaction volume (29 home sales in a single month) indicates a liquid market at an affordable price point. Good landlord buyer territory with consistent rental demand from Tinker AFB-area employment. One of the more reliable lower-priced zips in the metro for wholesalers.</p>
+    </div>
+  </div>
+
+  <div class="callout callout-investor">
+    <div class="callout-head">OKC Investor Read</div>
+    <p>The best wholesale activity in OKC is concentrated in a band running from 73107 through 73111 and into 73115. These zips have the right combination of motivated sellers, affordable acquisition prices, and landlord buyer demand. The suburban ring (73013, 73120, 73160) generates volume but not wholesale margins. The deep distressed zips (73108, 73129) have low prices but thin buyer pools — know your exit before you go in.</p>
+  </div>
+
+  <!-- ── SECTION 3 ── -->
+  <h2>Tulsa: Underrated and Underpriced</h2>
+
+  <p>Tulsa's median home price sits at approximately <strong>$245,000 as of March 2026</strong>, up 3.2% year-over-year, with a price-per-square-foot average of $142 citywide. Homes are selling in a median of 28–36 days and at a 97.25–98.4% sale-to-list ratio — a market that's balanced to slightly seller-favoring. Most importantly for investors: Tulsa is 42% below the national median price. That gap doesn't correct overnight. It creates sustained runway for appreciation plays and consistent cash flow for buy-and-hold buyers.</p>
+
+  <p>Tulsa's economy is quietly diversifying. Aerospace (American Airlines maintenance hub), healthcare, and a growing technology sector are layering onto the traditional energy base. The Tulsa Remote program — which paid professionals $10,000 to relocate to the city — brought thousands of higher-income residents who bought homes, spent money, and supported property values in ways that didn't show up in a single press release but have been compounding in transaction data for three years.</p>
+
+  <!-- Tulsa Zip Code Chart -->
+  <div class="chart-block">
+    <div class="chart-title">Tulsa Zip Code — Price Per Sq Ft and YoY Appreciation</div>
+    <div class="chart-sub">Sources: TulsaMarketData.com, Redfin, Zillow · Q1 2026</div>
+    <div class="chart-wrap" style="height:280px;">
+      <canvas id="tulsaChart"></canvas>
+    </div>
+  </div>
+
+  <h3>Tulsa Zip Code Heat Map</h3>
+  <div class="legend-row">
+    <div class="legend-item"><div class="legend-dot" style="background:var(--hot)"></div> Hot — fast appreciation, rising retail competition</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--warm)"></div> Active — investor workable</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--cold)"></div> Cold / Distressed — low velocity</div>
+    <div class="legend-item"><div class="legend-dot" style="background:var(--opportunity)"></div> Opportunity — volume + value</div>
+  </div>
+
+  <div class="zip-grid">
+    <div class="zip-card hot">
+      <div class="zip-code">74104</div>
+      <div class="zip-name">Midtown Tulsa</div>
+      <div class="zip-price">~$198/sqft</div>
+      <div class="zip-stats">YoY appreciation: +5.1% · Fastest in Tulsa<br>DOM: 25–35 days</div>
+      <span class="badge badge-hot">Hottest Zip — Tulsa</span>
+      <p class="zip-note">Fastest-appreciating zip code in the Tulsa market. Walkability, proximity to employment, and buyer competition from the Tulsa Remote cohort have driven values up sharply. Retail buyers dominate. Wholesalers who can source off-market here have strong exit options but acquisition is competitive.</p>
+    </div>
+    <div class="zip-card hot">
+      <div class="zip-code">74105</div>
+      <div class="zip-name">Brookside</div>
+      <div class="zip-price">~$192K–$270K</div>
+      <div class="zip-stats">YoY appreciation: +4.8% · 614 active listings<br>DOM: 28–35 days</div>
+      <span class="badge badge-hot">Hot — High Velocity</span>
+      <p class="zip-note">Brookside is Tulsa's most active investor zip by listing volume. Strong schools, walkable retail district, and consistent buyer demand make this a reliable exit market. Wholesale deals here typically target the older stock on the edges of the neighborhood — deep Brookside is now largely retail territory.</p>
+    </div>
+    <div class="zip-card hot">
+      <div class="zip-code">74037</div>
+      <div class="zip-name">Jenks</div>
+      <div class="zip-price">$280K–$360K</div>
+      <div class="zip-stats">YoY appreciation: +4.6%<br>DOM: 25–40 days · School district premium</div>
+      <span class="badge badge-hot">Hot — Suburban</span>
+      <p class="zip-note">Jenks School District commands a consistent premium. Family demand is sustained and price growth has been reliable. Similar to OKC's Edmond — strong retail market, minimal distressed inventory, thin wholesale opportunity unless you have very specific motivated-seller channels feeding this area.</p>
+    </div>
+    <div class="zip-card warm">
+      <div class="zip-code">74133</div>
+      <div class="zip-name">South Tulsa</div>
+      <div class="zip-price">~$128/sqft · $260K–$340K</div>
+      <div class="zip-stats">Highest recently sold volume: 283 homes<br>DOM: 30–40 days</div>
+      <span class="badge badge-warm">Active — High Volume</span>
+      <p class="zip-note">The highest recently-sold-homes count of any Tulsa zip code means transaction infrastructure (title companies, lenders, agents) is well-established. Mid-to-upper price range limits wholesale opportunity to specific distressed situations, but exit liquidity is excellent for flippers who can source right.</p>
+    </div>
+    <div class="zip-card warm">
+      <div class="zip-code">74114</div>
+      <div class="zip-name">Maple Ridge / Riverview</div>
+      <div class="zip-price">~$192K–$273K</div>
+      <div class="zip-stats">Cap rate on multi-family: 7.48%<br>DOM: 35–50 days</div>
+      <span class="badge badge-warm">Active — Multi-Family Angle</span>
+      <p class="zip-note">Strong multi-family play. Cap rates in 74114 for small residential income properties run north of 7%, making this a target zone for buy-and-hold buyers. Older housing stock creates steady wholesale sourcing opportunity. One of the better landlord-buyer exit zips in the Tulsa market.</p>
+    </div>
+    <div class="zip-card opportunity">
+      <div class="zip-code">74110</div>
+      <div class="zip-name">North Tulsa / Greenwood Adjacent</div>
+      <div class="zip-price">~$140K–$175K</div>
+      <div class="zip-stats">DOM: 55–75 days · Rising investment attention<br>Older 1940s–1970s stock</div>
+      <span class="badge badge-opp">Opportunity — Emerging</span>
+      <p class="zip-note">North Tulsa has been the subject of sustained community investment conversations, and transaction data is beginning to reflect incremental activity. Price points are accessible, motivated seller density is high, and early-mover wholesalers are building buyer networks here. Not a fast market — but the trajectory is shifting.</p>
+    </div>
+    <div class="zip-card opportunity">
+      <div class="zip-code">74127</div>
+      <div class="zip-name">West Tulsa</div>
+      <div class="zip-price">$110K–$160K</div>
+      <div class="zip-stats">DOM: 60–80 days · Low acquisition cost<br>Cap rates: 11%+ on right deals</div>
+      <span class="badge badge-opp">Opportunity — Cash Flow</span>
+      <p class="zip-note">West Tulsa produces some of the strongest rental yields in the metro. Multi-family properties here have posted cap rates north of 11% for investors who understand the tenant base. Acquisition prices are low, days-on-market is elevated (meaning less competition), and landlord buyers who work this area are loyal repeat buyers. Strong wholesale corridor for the right deal-maker.</p>
+    </div>
+    <div class="zip-card cold">
+      <div class="zip-code">74115 / 74126</div>
+      <div class="zip-name">North Industrial / North Peoria Area</div>
+      <div class="zip-price">$19K–$109K</div>
+      <div class="zip-stats">DOM: 90–120+ days · Very low velocity<br>Distressed concentration</div>
+      <span class="badge badge-cold">Cold — High Risk</span>
+      <p class="zip-note">These zip codes contain Tulsa's most distressed inventory at the lowest price points. Values as low as $19,000 indicate significant blight concentration. Some investors find deals here that work for cash flow — but buyer pools are thin, title complications are common, and the overall holding risk is elevated. Proceed with significant diligence.</p>
+    </div>
+  </div>
+
+  <!-- ── SECTION 4 ── -->
+  <div class="section-divider"><span>Foreclosure & Distressed Pipeline</span></div>
+  <h2>The Rising Foreclosure Pipeline — What It Means for Deal Flow</h2>
+
+  <p>This is the most important trend in the Oklahoma market right now for wholesale investors: <strong>foreclosure activity is accelerating.</strong> Oklahoma's foreclosure rate stands at approximately <strong>1 in every 3,356 housing units as of March 2026</strong>, with 529 total filings out of over 1.7 million properties statewide, according to ATTOM Data. Nationally, Q1 2026 filings were up 26% year-over-year. Oklahoma is tracking that trend.</p>
+
+  <p>The rate of increase is more significant than the rate itself. Foreclosure moratoriums fully unwound in 2024, adjustable-rate borrowers are feeling rate pressure, and post-pandemic equity gains — while real — haven't protected every homeowner from life circumstances that force a sale. The pipeline is refilling.</p>
+
+  <!-- Foreclosure Chart -->
+  <div class="chart-block">
+    <div class="chart-title">Oklahoma Distressed Inventory Breakdown</div>
+    <div class="chart-sub">Share of total distressed housing units by stage · ATTOM Data / FortuneBuilders</div>
+    <div class="chart-wrap" style="height:240px;">
+      <canvas id="foreclosureChart"></canvas>
+    </div>
+  </div>
+
+  <p>Within Oklahoma's distressed inventory, auction properties now make up the <strong>largest single category at 45.1%</strong> — meaning the sheriff sale lists in Oklahoma County and Tulsa County are not a sideline play; they're where the majority of distressed deal flow is actively concentrated. Pre-foreclosures represent 24.2% and are worth tracking closely in the OSCN court system, as these are sellers who may be willing to transact before the auction stage.</p>
+
+  <div class="callout callout-opp">
+    <div class="callout-head">Distressed Pipeline Opportunity</div>
+    <p>The rising foreclosure trend is not bad news for the market — it's deal flow. Oklahoma's overall rate remains below the national average of 1 in 1,211 housing units, meaning the volume is digestible without a broader market disruption. For wholesalers and cash buyers, this is the sourcing environment you've been waiting for since 2021. Probate pipeline deals are separately accelerating as the boomer estate transfer wave builds — and Oklahoma courts process that inventory largely off-MLS.</p>
+  </div>
+
+  <!-- ── SECTION 5 ── -->
+  <h2>The Rental Market: Why Landlord Buyers Are Active</h2>
+
+  <p>The rental fundamentals in both metros directly determine how aggressively landlord cash buyers are acquiring — which in turn determines how fast wholesalers can move deals in the lower price ranges. The numbers here are favorable.</p>
+
+  <div class="data-table-wrap">
+    <div class="chart-title" style="margin-bottom:4px;">OKC & Tulsa Rental Market Snapshot</div>
+    <div class="chart-sub">2025–2026 data · Sources: Rent.com, Redfin, Luxury Playbook, Caldwell</div>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Market / Unit Type</th>
+          <th>Avg Monthly Rent</th>
+          <th>Vacancy Rate</th>
+          <th>Investor Cap Rate</th>
+          <th>Investor Signal</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>OKC — Studio</td>
+          <td>$775</td>
+          <td>&lt;5.2%</td>
+          <td>6–8%</td>
+          <td><span class="badge badge-opp">Strong Cash Flow</span></td>
+        </tr>
+        <tr>
+          <td>OKC — 1BR</td>
+          <td>$920–$1,050</td>
+          <td>&lt;5.2%</td>
+          <td>6–8%</td>
+          <td><span class="badge badge-opp">Strong Cash Flow</span></td>
+        </tr>
+        <tr>
+          <td>OKC — 2BR</td>
+          <td>$1,030–$1,100</td>
+          <td>&lt;5.2%</td>
+          <td>6–8%</td>
+          <td><span class="badge badge-opp">Strong Cash Flow</span></td>
+        </tr>
+        <tr>
+          <td>Tulsa — 1BR (avg)</td>
+          <td>$1,065</td>
+          <td>~4–6%</td>
+          <td>6.4–11%+</td>
+          <td><span class="badge badge-opp">Exceptional Yields</span></td>
+        </tr>
+        <tr>
+          <td>Tulsa — Midtown (1BR)</td>
+          <td>$1,400</td>
+          <td>Low</td>
+          <td>7–9%</td>
+          <td><span class="badge badge-hot">Highest Demand</span></td>
+        </tr>
+        <tr>
+          <td>Tulsa — W. Tulsa 74127</td>
+          <td>$900–$1,100</td>
+          <td>Moderate</td>
+          <td>11%+</td>
+          <td><span class="badge badge-opp">Cash Flow Leaders</span></td>
+        </tr>
+        <tr>
+          <td>OKC — Moore/Edmond suburbs</td>
+          <td>$1,200–$1,600</td>
+          <td>Very low</td>
+          <td>5–6%</td>
+          <td><span class="badge badge-warm">Appreciation Play</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>Oklahoma City's vacancy rate has held below 5.2%, with rents stable and growing modestly. The <strong>cap rate range of 6–8%</strong> in OKC investment neighborhoods — and north of 11% in specific Tulsa corridors like West Tulsa — makes the math work for buy-and-hold buyers even at current interest rates. These buyers aren't going away. They're active, they need product, and they're the primary exit channel for wholesale deals in the $80,000–$160,000 acquisition range.</p>
+
+  <!-- ── SECTION 6 ── -->
+  <h2>What This Means for Your Next 90 Days</h2>
+
+  <p>Pull this data together and a clear picture emerges. Oklahoma in Q2 2026 is not an overheated market that has made investor math impossible. It's a functional market with real deal flow, a rising distressed pipeline, a strong landlord buyer base, and two major metros that each have distinct zones of activity, opportunity, and risk.</p>
+
+  <!-- Final Summary Table -->
+  <div class="data-table-wrap">
+    <div class="chart-title" style="margin-bottom:4px;">Quick Reference: Zip Code Summary — OKC & Tulsa</div>
+    <div class="chart-sub">For wholesalers and cash buyers · Q2 2026 investor positioning guide</div>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Zip</th>
+          <th>Area</th>
+          <th>Median Price</th>
+          <th>DOM</th>
+          <th>Signal</th>
+          <th>Best For</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>73013 / 73120</td>
+          <td>Edmond / NW OKC</td>
+          <td>$350K–$475K</td>
+          <td>25–35d</td>
+          <td><span class="badge badge-hot">Hot</span></td>
+          <td>Retail exits only</td>
+        </tr>
+        <tr>
+          <td>73160 / 73170</td>
+          <td>Moore / S. OKC</td>
+          <td>$270K–$340K</td>
+          <td>30–40d</td>
+          <td><span class="badge badge-hot">Hot</span></td>
+          <td>Flippers (if sourced right)</td>
+        </tr>
+        <tr>
+          <td>73107</td>
+          <td>Capitol Hill / W. OKC</td>
+          <td>~$157K</td>
+          <td>45–60d</td>
+          <td><span class="badge badge-warm">Active</span></td>
+          <td>Wholesale + Flip</td>
+        </tr>
+        <tr>
+          <td>73106</td>
+          <td>Midtown OKC</td>
+          <td>~$207K</td>
+          <td>35–55d</td>
+          <td><span class="badge badge-warm">Active</span></td>
+          <td>Flip + Retail</td>
+        </tr>
+        <tr>
+          <td>73115</td>
+          <td>SE OKC / MWC Adjacent</td>
+          <td>$130K–$160K</td>
+          <td>40–55d</td>
+          <td><span class="badge badge-warm">Active</span></td>
+          <td>Wholesale + Landlord</td>
+        </tr>
+        <tr>
+          <td>73111</td>
+          <td>NE OKC</td>
+          <td>$97K–$165K</td>
+          <td>72–76d</td>
+          <td><span class="badge badge-opp">Opportunity</span></td>
+          <td>Landlord / Section 8</td>
+        </tr>
+        <tr>
+          <td>73117</td>
+          <td>NE OKC / Springlake</td>
+          <td>$105K–$192K</td>
+          <td>101–129d</td>
+          <td><span class="badge badge-opp">Opportunity</span></td>
+          <td>Patient buy-and-hold</td>
+        </tr>
+        <tr>
+          <td>73108 / 73129</td>
+          <td>SW / SE OKC</td>
+          <td>$80K–$104K</td>
+          <td>80–100+d</td>
+          <td><span class="badge badge-cold">Cold</span></td>
+          <td>Specialists only</td>
+        </tr>
+        <tr>
+          <td>74104</td>
+          <td>Midtown Tulsa</td>
+          <td>$198/sqft</td>
+          <td>25–35d</td>
+          <td><span class="badge badge-hot">Hottest Tulsa</span></td>
+          <td>Off-market sourcing + flip</td>
+        </tr>
+        <tr>
+          <td>74105</td>
+          <td>Brookside</td>
+          <td>$192K–$270K</td>
+          <td>28–35d</td>
+          <td><span class="badge badge-hot">Hot</span></td>
+          <td>Flip (edge of district)</td>
+        </tr>
+        <tr>
+          <td>74037</td>
+          <td>Jenks</td>
+          <td>$280K–$360K</td>
+          <td>25–40d</td>
+          <td><span class="badge badge-hot">Hot</span></td>
+          <td>Retail exits</td>
+        </tr>
+        <tr>
+          <td>74133</td>
+          <td>South Tulsa</td>
+          <td>$260K–$340K</td>
+          <td>30–40d</td>
+          <td><span class="badge badge-warm">Active</span></td>
+          <td>High exit liquidity</td>
+        </tr>
+        <tr>
+          <td>74114</td>
+          <td>Maple Ridge / Riverview</td>
+          <td>$192K–$273K</td>
+          <td>35–50d</td>
+          <td><span class="badge badge-warm">Active</span></td>
+          <td>Multi-family wholesale</td>
+        </tr>
+        <tr>
+          <td>74110</td>
+          <td>North Tulsa</td>
+          <td>$140K–$175K</td>
+          <td>55–75d</td>
+          <td><span class="badge badge-opp">Opportunity</span></td>
+          <td>Early-mover wholesale</td>
+        </tr>
+        <tr>
+          <td>74127</td>
+          <td>West Tulsa</td>
+          <td>$110K–$160K</td>
+          <td>60–80d</td>
+          <td><span class="badge badge-opp">Opportunity</span></td>
+          <td>Cash flow landlord</td>
+        </tr>
+        <tr>
+          <td>74115 / 74126</td>
+          <td>N. Industrial / N. Peoria</td>
+          <td>$19K–$109K</td>
+          <td>90–120+d</td>
+          <td><span class="badge badge-cold">Cold</span></td>
+          <td>Specialists / deep value</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>For wholesalers, the priority should be the opportunity and active zones: 73107, 73111, 73115 in OKC; 74110, 74114, 74127 in Tulsa. These corridors have the combination of motivated seller access, affordable acquisition pricing, and established landlord buyer demand that makes wholesale deals repeatable. The hot zones have better exits but harder acquisition. The cold zones have cheap prices but thin buyer pools that require very specific relationships to navigate.</p>
+
+  <p>For cash buyers, the rental math in both cities continues to justify acquisition even at current rates. OKC's 6–8% cap rates and Tulsa's 7–11%+ in targeted corridors outperform most comparable metros. The foreclosure pipeline building in Oklahoma's court system is about to add supply — which means the next 12–18 months will likely produce more inventory at investor-friendly pricing than the past three years combined.</p>
+
+  <p>Oklahoma doesn't generate national headlines. It doesn't need to. The investors who've been quietly working OKC and Tulsa for the past decade have built portfolios on exactly the kind of steady, unsexy fundamentals this market continues to produce. The numbers still work. The pipeline is growing. The exits are real.</p>
+
+  <p style="font-style:italic; color: var(--text-light); font-size:14px; border-top:1px solid var(--warm-gray); padding-top:20px; margin-top:40px;">Sources: Redfin, Zillow, Houzeo, ATTOM Data, Norada Real Estate, TulsaMarketData.com, Rent.com, The Luxury Playbook, FortuneBuilders, OSCN, Oklahoma County Assessor, Tulsa County Clerk. Data reflects Q4 2025 through Q2 2026. All figures should be independently verified prior to investment decisions.</p>
+
+</div>
+</main>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-inner">
+    <div class="cta-eyebrow">CrowdCloser</div>
+    <h2 class="cta-headline">Built for Investors Who <span>Actually Work</span> These Markets</h2>
+    <div class="cta-divider"></div>
+    <p class="cta-body">CrowdCloser is a private marketplace connecting Oklahoma wholesalers, cash buyers, and service providers — local-first, relationship-driven, and built around the OKC and Tulsa markets you just read about. No blast lists. No cold outreach. Just vetted deal-makers on both sides of the transaction, matched by criteria, not by luck.</p>
+    <p class="cta-body">If you&#39;re working these markets and want to be in the room when this launches, we&#39;d like to know you.</p>
+    <a href="https://crowdcloser.com" class="cta-link">Request Early Access &#8594;</a>
+    <p class="cta-fine">No obligation. No pitch. Just a conversation.</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-brand">CrowdCloser</div>
+  <div class="footer-sub" style="margin-bottom:4px;">Private Marketplace &middot; Oklahoma City &amp; Tulsa</div>
+  <a href="https://crowdcloser.com" class="footer-url">crowdcloser.com</a>
+</footer>
+
+<script>
+// ── PRICE TREND CHART ────────────────────────────────────────────
+const priceCtx = document.getElementById('priceChart').getContext('2d');
+new Chart(priceCtx, {
+  type: 'line',
+  data: {
+    labels: ['Q1 2022','Q3 2022','Q1 2023','Q3 2023','Q1 2024','Q3 2024','Q1 2025','Q3 2025','Q1 2026'],
+    datasets: [
+      {
+        label: 'Oklahoma State',
+        data: [215000,228000,232000,234000,237000,240000,244000,248000,257000],
+        borderColor: '#2e75b6',
+        backgroundColor: 'rgba(46,117,182,.08)',
+        borderWidth: 2.5,
+        tension: .4,
+        fill: true,
+        pointBackgroundColor: '#2e75b6',
+        pointRadius: 4,
+      },
+      {
+        label: 'OKC Metro',
+        data: [220000,235000,240000,244000,248000,254000,258000,264000,264000],
+        borderColor: '#c8972a',
+        backgroundColor: 'rgba(200,151,42,.06)',
+        borderWidth: 2.5,
+        tension: .4,
+        fill: false,
+        pointBackgroundColor: '#c8972a',
+        pointRadius: 4,
+      },
+      {
+        label: 'Tulsa Metro',
+        data: [195000,208000,215000,220000,226000,230000,236000,240000,245000],
+        borderColor: '#2a9d5e',
+        backgroundColor: 'transparent',
+        borderWidth: 2.5,
+        tension: .4,
+        fill: false,
+        borderDash: [5,4],
+        pointBackgroundColor: '#2a9d5e',
+        pointRadius: 4,
+      }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { position:'top', labels:{ font:{ family:'DM Sans', size:12 }, color:'#4a4a4a', boxWidth:16, padding:16 } },
+      tooltip: { callbacks: { label: ctx => ' $' + ctx.raw.toLocaleString() } }
+    },
+    scales: {
+      y: {
+        ticks: { callback: v => '$'+Math.round(v/1000)+'K', font:{family:'DM Mono',size:11}, color:'#7a7a7a' },
+        grid: { color:'rgba(0,0,0,.06)' },
+        border: { dash:[4,4] }
+      },
+      x: {
+        ticks: { font:{family:'DM Mono',size:10}, color:'#7a7a7a' },
+        grid: { display:false }
+      }
+    }
+  }
+});
+
+// ── OKC ZIP CHART ──────────────────────────────────────────────────
+const okcCtx = document.getElementById('okcZipChart').getContext('2d');
+new Chart(okcCtx, {
+  type: 'bar',
+  data: {
+    labels: ['73108','73129','73111','73117','73149','73115','73107','73105','73121','73106','73118','73102','73103','73104'],
+    datasets: [{
+      label: 'Median Home Value',
+      data: [80160,83643,96682,104506,105604,130465,156678,152579,207418,207086,228992,283080,337743,364290],
+      backgroundColor: [
+        '#4a90d9','#4a90d9',
+        '#2a9d5e','#2a9d5e','#2a9d5e',
+        '#e87b35','#e87b35','#e87b35',
+        '#e87b35','#e87b35','#e87b35',
+        '#d64045','#d64045','#d64045',
+      ],
+      borderRadius: 3,
+      borderWidth: 0,
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { display: false },
+      tooltip: { callbacks: { label: ctx => ' $'+ctx.raw.toLocaleString() } }
+    },
+    scales: {
+      y: {
+        ticks: { callback: v => '$'+Math.round(v/1000)+'K', font:{family:'DM Mono',size:11}, color:'#7a7a7a' },
+        grid: { color:'rgba(0,0,0,.06)' }
+      },
+      x: { ticks: { font:{family:'DM Mono',size:10}, color:'#4a4a4a' }, grid:{display:false} }
+    }
+  }
+});
+
+// ── TULSA CHART ────────────────────────────────────────────────────
+const tulsaCtx = document.getElementById('tulsaChart').getContext('2d');
+new Chart(tulsaCtx, {
+  type: 'bar',
+  data: {
+    labels: ['74115','74126','74110','74127','74106','74105','74114','74133','74037','74104'],
+    datasets: [
+      {
+        label: 'YoY Appreciation %',
+        data: [0.5,0.8,1.8,2.1,2.4,4.8,3.2,3.8,4.6,5.1],
+        backgroundColor: [
+          '#4a90d9','#4a90d9',
+          '#2a9d5e','#2a9d5e',
+          '#e87b35',
+          '#d64045','#e87b35','#e87b35','#d64045','#d64045',
+        ],
+        borderRadius: 3,
+        borderWidth: 0,
+        yAxisID: 'y1',
+      }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: { display:false },
+      tooltip: { callbacks: { label: ctx => ' '+ctx.raw+'% YoY appreciation' } }
+    },
+    scales: {
+      y1: {
+        ticks: { callback: v => v+'%', font:{family:'DM Mono',size:11}, color:'#7a7a7a' },
+        grid: { color:'rgba(0,0,0,.06)' }
+      },
+      x: { ticks: { font:{family:'DM Mono',size:10}, color:'#4a4a4a' }, grid:{display:false} }
+    }
+  }
+});
+
+// ── FORECLOSURE DONUT ──────────────────────────────────────────────
+const fcCtx = document.getElementById('foreclosureChart').getContext('2d');
+new Chart(fcCtx, {
+  type: 'doughnut',
+  data: {
+    labels: ['Auction (Sheriff Sale)', 'Pre-Foreclosure', 'Bank-Owned (REO)', 'Other Distressed'],
+    datasets: [{
+      data: [45.1, 24.2, 22.8, 7.9],
+      backgroundColor: ['#c8972a','#2e75b6','#d64045','#9a9a9a'],
+      borderWidth: 2,
+      borderColor: '#fff',
+      hoverOffset: 8
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        position: 'right',
+        labels: { font:{family:'DM Sans',size:12}, color:'#4a4a4a', padding:16, boxWidth:14 }
+      },
+      tooltip: { callbacks: { label: ctx => ' '+ctx.label+': '+ctx.raw+'%' } }
+    },
+    cutout: '62%'
+  }
+});
+</script>
+</body>
+</html>
