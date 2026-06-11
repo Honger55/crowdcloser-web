@@ -1,0 +1,1412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Red Line Roofing & Construction | Newcastle, OK | Free Inspection</title>
+  <meta name="description" content="Fireman-owned roofing company in Newcastle, OK. GAF Certified. Roof replacement, hail damage, storm restoration & insurance claims. 20+ years experience. Call (405) 757-1627.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* ─── Reset & Tokens ──────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:       #1B2233;
+      --navy-deep:  #0f1520;
+      --red:        #C0222A;
+      --red-dark:   #9e1b22;
+      --white:      #FFFFFF;
+      --gray-50:    #F7F7F8;
+      --gray-200:   #E2E4E8;
+      --gray-500:   #6B7280;
+      --gray-700:   #374151;
+      --gold:       #F59E0B;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      color: var(--gray-700);
+      background: var(--white);
+      padding-bottom: 72px;
+    }
+
+    @media (min-width: 768px) {
+      body { padding-bottom: 0; }
+    }
+
+    h1, h2, h3, h4, h5 {
+      font-family: 'Oswald', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+    }
+
+    img { display: block; max-width: 100%; }
+    a { text-decoration: none; }
+
+    /* ─── Logo SVG ────────────────────────────────────────── */
+    /*
+      Built as inline SVG; no white-background PNG used.
+      CSS vars let each placement adapt its background blend color
+      so the inner-roof shape disappears into whatever dark bg it sits on.
+    */
+    .logo-mark { display: block; }
+
+    /* ─── Utility buttons ─────────────────────────────────── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Oswald', sans-serif;
+      font-weight: 600;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background .18s, transform .1s, border-color .18s;
+      text-decoration: none;
+    }
+    .btn:active { transform: scale(.98); }
+
+    .btn-red {
+      background: var(--red);
+      color: var(--white);
+      border: 2px solid var(--red);
+      padding: 13px 28px;
+      font-size: 16px;
+    }
+    .btn-red:hover { background: var(--red-dark); border-color: var(--red-dark); }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--white);
+      border: 2px solid rgba(255,255,255,.45);
+      padding: 13px 28px;
+      font-size: 16px;
+    }
+    .btn-ghost:hover { border-color: var(--white); background: rgba(255,255,255,.08); }
+
+    .btn-lg { font-size: 19px; padding: 16px 36px; }
+
+    /* ─── Section chrome ──────────────────────────────────── */
+    .eyebrow {
+      display: block;
+      font-family: 'Oswald', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      font-size: clamp(28px, 4.5vw, 48px);
+      line-height: 1.08;
+      color: var(--navy);
+      margin-bottom: 14px;
+    }
+
+    .section-lead {
+      font-size: 16px;
+      line-height: 1.75;
+      color: var(--gray-500);
+      max-width: 620px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* ─── NAV ─────────────────────────────────────────────── */
+    #nav {
+      position: sticky;
+      top: 0;
+      z-index: 120;
+      background: var(--navy);
+      box-shadow: 0 2px 16px rgba(0,0,0,.35);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+      gap: 16px;
+    }
+
+    .nav-logo { flex-shrink: 0; }
+
+    .nav-links {
+      display: none;
+      list-style: none;
+      gap: 28px;
+    }
+    .nav-links a {
+      font-family: 'Oswald', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.75);
+      transition: color .15s;
+    }
+    .nav-links a:hover { color: var(--red); }
+
+    @media (min-width: 900px) {
+      .nav-links { display: flex; }
+    }
+
+    .nav-cta { flex-shrink: 0; }
+
+    /* ─── HERO ────────────────────────────────────────────── */
+    #hero {
+      background: linear-gradient(150deg, var(--navy) 0%, #0d1422 100%);
+      position: relative;
+      overflow: hidden;
+      min-height: 580px;
+      display: flex;
+      align-items: center;
+    }
+
+    /* subtle hex-grid texture */
+    #hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      opacity: .06;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100'%3E%3Crect width='56' height='100' fill='none'/%3E%3Cpath d='M28 66L0 50V16L28 0l28 16v34L28 66zM28 100L0 84V50l28-16 28 16v34L28 100z' fill='%23C0222A'/%3E%3C/svg%3E");
+    }
+
+    /* red glow accent bottom-right */
+    #hero::after {
+      content: '';
+      position: absolute;
+      bottom: -80px;
+      right: -80px;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(192,34,42,.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      padding: 80px 20px 90px;
+      text-align: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(192,34,42,.14);
+      border: 1px solid rgba(192,34,42,.4);
+      color: #ff8a8f;
+      padding: 5px 16px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-family: 'Oswald', sans-serif;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+
+    .hero-h1 {
+      font-size: clamp(42px, 8vw, 86px);
+      color: var(--white);
+      line-height: 1.0;
+      margin-bottom: 18px;
+    }
+    .hero-h1 em {
+      color: var(--red);
+      font-style: normal;
+    }
+
+    .hero-sub {
+      font-size: clamp(15px, 2.2vw, 19px);
+      color: rgba(255,255,255,.7);
+      line-height: 1.7;
+      max-width: 580px;
+      margin: 0 auto 36px;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .hero-trust {
+      margin-top: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 8px 0;
+    }
+
+    .trust-pill {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      color: rgba(255,255,255,.65);
+      font-size: 13px;
+      padding: 0 20px;
+      border-right: 1px solid rgba(255,255,255,.15);
+    }
+    .trust-pill:last-child { border-right: none; }
+    .trust-pill svg { flex-shrink: 0; color: var(--red); }
+
+    /* ─── SERVICES ────────────────────────────────────────── */
+    #services {
+      padding: 90px 20px;
+      background: var(--gray-50);
+    }
+
+    .services-header {
+      text-align: center;
+      margin-bottom: 56px;
+    }
+    .services-header .section-lead { margin: 0 auto; }
+
+    .services-grid {
+      display: grid;
+      gap: 24px;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 600px) {
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (min-width: 1000px) {
+      .services-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .service-card {
+      background: var(--white);
+      border-radius: 10px;
+      padding: 34px 28px;
+      box-shadow: 0 1px 4px rgba(0,0,0,.06), 0 4px 16px rgba(0,0,0,.05);
+      border-top: 4px solid var(--red);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 32px rgba(0,0,0,.1);
+    }
+
+    .service-icon-wrap {
+      width: 54px;
+      height: 54px;
+      border-radius: 14px;
+      background: rgba(192,34,42,.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .service-card h3 {
+      font-size: 20px;
+      color: var(--navy);
+      margin-bottom: 10px;
+    }
+    .service-card p {
+      font-size: 14px;
+      line-height: 1.7;
+      color: var(--gray-500);
+    }
+
+    /* ─── WHY RED LINE ────────────────────────────────────── */
+    #why {
+      padding: 90px 20px;
+      background: var(--navy);
+    }
+
+    .why-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+    .why-header .eyebrow { color: #ff8a8f; }
+    .why-header .section-title { color: var(--white); }
+
+    .why-grid {
+      display: grid;
+      gap: 28px;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 600px) {
+      .why-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (min-width: 1000px) {
+      .why-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+
+    .why-card {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.07);
+      border-radius: 10px;
+      padding: 36px 24px 32px;
+      text-align: center;
+      transition: background .2s;
+    }
+    .why-card:hover { background: rgba(255,255,255,.07); }
+
+    .why-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: rgba(192,34,42,.15);
+      border: 2px solid rgba(192,34,42,.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 18px;
+    }
+
+    .why-stat {
+      font-family: 'Oswald', sans-serif;
+      font-size: 42px;
+      font-weight: 700;
+      color: var(--red);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .why-card h3 {
+      font-size: 17px;
+      color: var(--white);
+      margin-bottom: 12px;
+    }
+    .why-card p {
+      font-size: 13.5px;
+      color: rgba(255,255,255,.55);
+      line-height: 1.7;
+    }
+
+    /* ─── REVIEWS ─────────────────────────────────────────── */
+    #reviews {
+      padding: 90px 20px;
+      background: var(--white);
+    }
+
+    .reviews-header {
+      text-align: center;
+      margin-bottom: 54px;
+    }
+    .reviews-header .section-lead { margin: 0 auto; }
+
+    .star-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      margin-bottom: 6px;
+    }
+    .star-row span {
+      font-size: 13px;
+      color: var(--gray-500);
+    }
+
+    .reviews-grid {
+      display: grid;
+      gap: 24px;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 600px) {
+      .reviews-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (min-width: 1000px) {
+      .reviews-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+
+    .review-card {
+      background: var(--gray-50);
+      border-radius: 10px;
+      padding: 28px 24px 24px;
+      position: relative;
+      border: 1px solid var(--gray-200);
+    }
+
+    .review-card::after {
+      content: '\201C';
+      position: absolute;
+      top: 14px;
+      right: 18px;
+      font-size: 72px;
+      line-height: 1;
+      font-family: Georgia, serif;
+      color: rgba(192,34,42,.12);
+      pointer-events: none;
+    }
+
+    .review-stars { color: var(--gold); font-size: 15px; margin-bottom: 14px; }
+
+    .review-text {
+      font-size: 14px;
+      line-height: 1.72;
+      color: var(--gray-700);
+      margin-bottom: 18px;
+    }
+
+    .reviewer {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .reviewer-avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--navy);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Oswald', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--white);
+      flex-shrink: 0;
+    }
+    .reviewer-name {
+      font-family: 'Oswald', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--navy);
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+    .reviewer-city {
+      font-size: 12px;
+      color: var(--gray-500);
+    }
+
+    /* ─── SERVICE AREA ────────────────────────────────────── */
+    #area {
+      padding: 72px 20px;
+      background: var(--gray-50);
+      text-align: center;
+    }
+
+    #area .section-lead { margin: 0 auto 36px; }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 9px 22px;
+      border-radius: 24px;
+      border: 2px solid var(--navy);
+      background: var(--white);
+      font-family: 'Oswald', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--navy);
+      transition: background .18s, color .18s;
+      cursor: default;
+    }
+    .chip:hover { background: var(--navy); color: var(--white); }
+    .chip.primary {
+      background: var(--navy);
+      color: var(--white);
+    }
+
+    /* ─── QUOTE FORM ──────────────────────────────────────── */
+    #inspection {
+      padding: 90px 20px;
+      background: linear-gradient(160deg, var(--navy) 0%, #0d1422 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    #inspection::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      left: -100px;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(192,34,42,.15) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .form-wrapper {
+      max-width: 720px;
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .form-wrapper .eyebrow { color: #ff8a8f; }
+    .form-wrapper .section-title { color: var(--white); }
+    .form-wrapper .section-lead {
+      color: rgba(255,255,255,.6);
+      margin: 0 auto 40px;
+    }
+
+    .quote-form {
+      background: var(--white);
+      border-radius: 14px;
+      padding: 40px 32px 36px;
+      text-align: left;
+      box-shadow: 0 24px 64px rgba(0,0,0,.3);
+    }
+
+    @media (max-width: 480px) {
+      .quote-form { padding: 28px 18px 24px; }
+    }
+
+    .form-row {
+      display: grid;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+    @media (min-width: 560px) {
+      .form-row.two { grid-template-columns: 1fr 1fr; }
+    }
+
+    .form-group label {
+      display: block;
+      font-family: 'Oswald', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--navy);
+      margin-bottom: 7px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border: 2px solid var(--gray-200);
+      border-radius: 6px;
+      font-family: 'Inter', sans-serif;
+      font-size: 15px;
+      color: var(--gray-700);
+      background: var(--white);
+      outline: none;
+      transition: border-color .18s;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--red);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 96px;
+    }
+
+    .form-group select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236B7280' stroke-width='1.8' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 38px;
+    }
+
+    .form-submit {
+      width: 100%;
+      padding: 18px;
+      margin-top: 8px;
+      background: var(--red);
+      color: var(--white);
+      border: none;
+      border-radius: 6px;
+      font-family: 'Oswald', sans-serif;
+      font-size: 21px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background .18s;
+    }
+    .form-submit:hover { background: var(--red-dark); }
+    .form-submit:disabled { opacity: .8; cursor: default; }
+
+    .form-fine {
+      text-align: center;
+      font-size: 12px;
+      color: var(--gray-500);
+      margin-top: 14px;
+      line-height: 1.5;
+    }
+
+    /* ─── FOOTER ──────────────────────────────────────────── */
+    footer {
+      background: var(--navy-deep);
+      padding: 64px 20px 32px;
+    }
+
+    .footer-grid {
+      display: grid;
+      gap: 44px;
+      grid-template-columns: 1fr;
+      margin-bottom: 48px;
+    }
+    @media (min-width: 768px) {
+      .footer-grid { grid-template-columns: 2fr 1fr 1fr; }
+    }
+
+    .footer-brand-desc {
+      font-size: 14px;
+      line-height: 1.75;
+      color: rgba(255,255,255,.5);
+      max-width: 320px;
+      margin: 18px 0 20px;
+    }
+
+    .footer-badges { display: flex; gap: 10px; flex-wrap: wrap; }
+
+    .f-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 12px;
+      border-radius: 4px;
+      font-family: 'Oswald', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+    .f-badge.red {
+      background: rgba(192,34,42,.18);
+      border: 1px solid rgba(192,34,42,.35);
+      color: #ff8a8f;
+    }
+    .f-badge.gray {
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.12);
+      color: rgba(255,255,255,.6);
+    }
+
+    .footer-col h4 {
+      font-family: 'Oswald', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: .1em;
+      color: rgba(255,255,255,.9);
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .footer-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+    }
+    .footer-list a, .footer-list span {
+      display: flex;
+      align-items: flex-start;
+      gap: 9px;
+      font-size: 14px;
+      color: rgba(255,255,255,.55);
+      text-decoration: none;
+      line-height: 1.5;
+      transition: color .15s;
+    }
+    .footer-list a:hover { color: var(--red); }
+    .footer-list svg { flex-shrink: 0; margin-top: 2px; }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,.07);
+      padding-top: 24px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: space-between;
+      font-size: 12.5px;
+      color: rgba(255,255,255,.3);
+    }
+
+    /* ─── MOBILE STICKY BAR ───────────────────────────────── */
+    .sticky-bar {
+      display: flex;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 200;
+      background: var(--navy-deep);
+      border-top: 2px solid var(--red);
+      box-shadow: 0 -4px 24px rgba(0,0,0,.4);
+    }
+    .sticky-bar a {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 10px;
+      font-family: 'Oswald', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      color: var(--white);
+      text-decoration: none;
+      transition: background .18s;
+    }
+    .sticky-bar a:first-child {
+      background: var(--red);
+      border-right: 1px solid rgba(255,255,255,.15);
+    }
+    .sticky-bar a:first-child:hover { background: var(--red-dark); }
+    .sticky-bar a:last-child:hover { background: rgba(255,255,255,.07); }
+
+    @media (min-width: 768px) {
+      .sticky-bar { display: none; }
+    }
+
+    /* ─── DIVIDER BAR ─────────────────────────────────────── */
+    .red-bar {
+      height: 5px;
+      background: linear-gradient(90deg, var(--red) 0%, #e84d54 100%);
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════ NAV ══════════════════ -->
+<nav id="nav">
+  <div class="nav-inner">
+
+    <!-- SVG Logo – no PNG, no white-background artifacts -->
+    <a href="#" class="nav-logo" aria-label="Red Line Roofing & Construction">
+      <svg class="logo-mark" width="198" height="46" viewBox="0 0 480 115"
+           xmlns="http://www.w3.org/2000/svg" overflow="visible">
+
+        <!-- Outer red filled roof -->
+        <polygon points="58,88 240,8 422,88" fill="#C0222A"/>
+
+        <!-- Inner roof overlay – color matches nav bg so it "cuts through" the red -->
+        <polygon points="95,88 240,30 385,88" fill="#1B2233"/>
+
+        <!-- House walls -->
+        <rect x="122" y="86" width="236" height="20" fill="none" stroke="white" stroke-width="2"/>
+
+        <!-- Window -->
+        <rect x="206" y="50" width="68" height="38" fill="none" stroke="white" stroke-width="2"/>
+        <line x1="240" y1="50" x2="240" y2="88" stroke="white" stroke-width="1.5"/>
+        <line x1="206" y1="69" x2="274" y2="69" stroke="white" stroke-width="1.5"/>
+
+        <!-- EKG left -->
+        <polyline points="58,72 36,72 30,59 23,82 17,63 12,72 -12,72"
+                  fill="none" stroke="#C0222A" stroke-width="2.4"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+
+        <!-- EKG right -->
+        <polyline points="422,72 444,72 450,59 457,82 463,63 468,72 492,72"
+                  fill="none" stroke="#C0222A" stroke-width="2.4"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+
+        <!-- REDLINE text -->
+        <text x="240" y="112"
+              font-family="Oswald, sans-serif" font-weight="700"
+              font-size="28" fill="white" text-anchor="middle"
+              letter-spacing="5">REDLINE</text>
+      </svg>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#why">Why Us</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+      <li><a href="#area">Service Area</a></li>
+      <li><a href="#inspection">Free Inspection</a></li>
+    </ul>
+
+    <div class="nav-cta">
+      <a href="tel:4057571627" class="btn btn-red" style="font-size:15px; padding:11px 22px;">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+          <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.69 12a19.79 19.79 0 01-3.07-8.67A2 2 0 013.6 1.18h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L7.91 8.78a16 16 0 006 6l.96-.96a2 2 0 012.11-.45c.907.34 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+        </svg>
+        (405) 757-1627
+      </a>
+    </div>
+
+  </div>
+</nav>
+
+<!-- ══════════════════ HERO ══════════════════ -->
+<section id="hero">
+  <div class="hero-inner">
+
+    <div class="hero-badge">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+      </svg>
+      Fireman-Owned &nbsp;·&nbsp; GAF Certified &nbsp;·&nbsp; 20+ Years Experience
+    </div>
+
+    <h1 class="hero-h1">
+      Newcastle's Most<br>
+      <em>Trusted Roofer</em>
+    </h1>
+
+    <p class="hero-sub">
+      Storm damage? Hail hit your roof? Kirk Albers and the Red Line team handle
+      everything — from insurance claims to full replacements — done right the first time.
+    </p>
+
+    <div class="hero-ctas">
+      <a href="#inspection" class="btn btn-red btn-lg">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round">
+          <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+        </svg>
+        Get Free Inspection
+      </a>
+      <a href="tel:4057571627" class="btn btn-ghost btn-lg">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round">
+          <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.69 12a19.79 19.79 0 01-3.07-8.67A2 2 0 013.6 1.18h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L7.91 8.78a16 16 0 006 6l.96-.96a2 2 0 012.11-.45c.907.34 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+        </svg>
+        Call (405) 757-1627
+      </a>
+    </div>
+
+    <div class="hero-trust">
+      <div class="trust-pill">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+        Licensed #80006415
+      </div>
+      <div class="trust-pill">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        GAF Certified
+      </div>
+      <div class="trust-pill">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        5-Star Rated
+      </div>
+      <div class="trust-pill">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        Same-Day Response
+      </div>
+      <div class="trust-pill">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0112 2a8 8 0 018 8.2c0 7.3-8 11.8-8 11.8z"/></svg>
+        Newcastle, OK
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="red-bar"></div>
+
+<!-- ══════════════════ SERVICES ══════════════════ -->
+<section id="services">
+  <div class="container">
+    <div class="services-header">
+      <span class="eyebrow">What We Do</span>
+      <h2 class="section-title">Complete Roofing Services<br>for Central Oklahoma</h2>
+      <p class="section-lead">From emergency repairs to full storm restorations, Red Line Roofing handles every aspect of your project with the precision of a professional craftsman.</p>
+    </div>
+
+    <div class="services-grid">
+
+      <!-- Roof Replacement -->
+      <div class="service-card">
+        <div class="service-icon-wrap">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C0222A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/>
+            <polyline points="9 22 9 12 15 12 15 22"/>
+          </svg>
+        </div>
+        <h3>Roof Replacement</h3>
+        <p>Full tear-off and replacement with premium GAF materials. We assess your roof's condition and recommend the best solution for your home and budget, backed by manufacturer warranties.</p>
+      </div>
+
+      <!-- Hail Damage -->
+      <div class="service-card">
+        <div class="service-icon-wrap">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C0222A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 17.58A5 5 0 0018 8h-1.26A8 8 0 104 16.25M8 16h.01M8 20h.01M12 18h.01M12 22h.01M16 16h.01"/>
+          </svg>
+        </div>
+        <h3>Hail Damage</h3>
+        <p>Oklahoma hailstorms are no joke. We identify and document all hail damage, provide a detailed assessment, and restore your roof to pre-storm condition fast.</p>
+      </div>
+
+      <!-- Storm Restoration -->
+      <div class="service-card">
+        <div class="service-icon-wrap">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C0222A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+          </svg>
+        </div>
+        <h3>Storm Restoration</h3>
+        <p>When severe weather strikes, we respond fast. Wind damage, fallen debris, missing shingles — we get your home protected and your roof restored quickly and correctly.</p>
+      </div>
+
+      <!-- Insurance Claims -->
+      <div class="service-card">
+        <div class="service-icon-wrap">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C0222A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+          </svg>
+        </div>
+        <h3>Insurance Claims</h3>
+        <p>Navigating insurance is overwhelming. We work directly with your adjuster, document every detail, and make sure you get the full claim you're entitled to.</p>
+      </div>
+
+      <!-- Roof Repair -->
+      <div class="service-card">
+        <div class="service-icon-wrap">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C0222A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/>
+          </svg>
+        </div>
+        <h3>Roof Repair</h3>
+        <p>Not every problem needs a full replacement. We handle targeted repairs — flashing, valleys, ridge caps, and leak fixes — that extend the life of your existing roof.</p>
+      </div>
+
+      <!-- Gutters -->
+      <div class="service-card">
+        <div class="service-icon-wrap">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C0222A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 6h18M3 12h10m-8 6h6"/>
+            <path d="M19 16l2 2-4 4"/>
+          </svg>
+        </div>
+        <h3>Gutters</h3>
+        <p>Properly functioning gutters protect your foundation and siding. We install, repair, and replace gutter systems to keep water flowing away from your home year-round.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ WHY RED LINE ══════════════════ -->
+<section id="why">
+  <div class="container">
+
+    <div class="why-header">
+      <span class="eyebrow">Why Choose Us</span>
+      <h2 class="section-title">Why Homeowners Trust Red Line</h2>
+    </div>
+
+    <div class="why-grid">
+
+      <div class="why-card">
+        <div class="why-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#C0222A" stroke-width="2.2" stroke-linecap="round">
+            <circle cx="12" cy="12" r="10"/>
+            <polyline points="12 6 12 12 16 14"/>
+          </svg>
+        </div>
+        <div class="why-stat">20+</div>
+        <h3>Years of Experience</h3>
+        <p>Two decades of roofing in Central Oklahoma. Kirk has seen every roof type, every damage scenario, and every insurance situation there is.</p>
+      </div>
+
+      <div class="why-card">
+        <div class="why-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#C0222A" stroke-width="2.2" stroke-linecap="round">
+            <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
+          </svg>
+        </div>
+        <div class="why-stat" style="font-size:24px; padding-top:10px; letter-spacing:.03em; line-height:1.2;">FIREMAN<br>OWNED</div>
+        <h3>Service-First Values</h3>
+        <p>Kirk brings the same duty and discipline from the fire department to every job. Honest assessments, no upselling, no cutting corners — ever.</p>
+      </div>
+
+      <div class="why-card">
+        <div class="why-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#C0222A" stroke-width="2.2" stroke-linecap="round">
+            <circle cx="12" cy="8" r="6"/>
+            <path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/>
+          </svg>
+        </div>
+        <div class="why-stat" style="font-size:26px; padding-top:8px; letter-spacing:.03em; line-height:1.2;">GAF<br>CERTIFIED</div>
+        <h3>Manufacturer Certified</h3>
+        <p>GAF certification means we meet the highest installation quality standards and can offer extended manufacturer warranties on your new roof.</p>
+      </div>
+
+      <div class="why-card">
+        <div class="why-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#C0222A" stroke-width="2.2" stroke-linecap="round">
+            <circle cx="11" cy="11" r="8"/>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+        </div>
+        <div class="why-stat" style="font-size:24px; padding-top:10px; letter-spacing:.03em; line-height:1.2;">FREE<br>INSPECT</div>
+        <h3>No-Pressure Approach</h3>
+        <p>Every job starts with a free inspection and an honest recommendation. You'll know exactly what you need — and what you don't.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ REVIEWS ══════════════════ -->
+<section id="reviews">
+  <div class="container">
+
+    <div class="reviews-header">
+      <span class="eyebrow">Customer Reviews</span>
+      <h2 class="section-title">What Homeowners Are Saying</h2>
+      <div class="star-row">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="#F59E0B"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="#F59E0B"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="#F59E0B"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="#F59E0B"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="#F59E0B"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <span>5.0 — All 5-Star Reviews</span>
+      </div>
+    </div>
+
+    <div class="reviews-grid">
+
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Kirk and his crew did an outstanding job on our roof after the last hailstorm. They handled the entire insurance process and made it completely stress-free. Highly recommend Red Line to anyone in the area."</p>
+        <div class="reviewer">
+          <div class="reviewer-avatar">TC</div>
+          <div>
+            <div class="reviewer-name">Timothy Callahan</div>
+            <div class="reviewer-city">Newcastle, OK</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Professional from start to finish. They found damage I didn't even know I had, worked directly with my insurance adjuster, and the job was done on schedule. My roof looks brand new — couldn't be happier."</p>
+        <div class="reviewer">
+          <div class="reviewer-avatar">MP</div>
+          <div>
+            <div class="reviewer-name">Megan Price</div>
+            <div class="reviewer-city">Blanchard, OK</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"Red Line came out the same day I called after a bad storm came through. Kirk was upfront about what needed to be done and the price was fair. Great company, great people. Will absolutely use them again."</p>
+        <div class="reviewer">
+          <div class="reviewer-avatar">CK</div>
+          <div>
+            <div class="reviewer-name">Cole Kroutil</div>
+            <div class="reviewer-city">Mustang, OK</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">"I've used a few roofing companies over the years and Red Line is by far the best. You can tell Kirk takes real pride in his work. The cleanup was immaculate and the new roof is absolutely perfect."</p>
+        <div class="reviewer">
+          <div class="reviewer-avatar">JH</div>
+          <div>
+            <div class="reviewer-name">Jared Heinrich</div>
+            <div class="reviewer-city">Moore, OK</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ SERVICE AREA ══════════════════ -->
+<section id="area">
+  <div class="container">
+    <span class="eyebrow">Service Area</span>
+    <h2 class="section-title">Serving Central Oklahoma</h2>
+    <p class="section-lead">Red Line Roofing proudly serves Newcastle and the surrounding communities throughout the greater Oklahoma City metro area. Not sure if we cover your area? Call us — we likely do.</p>
+
+    <div class="chips">
+      <div class="chip primary">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Newcastle
+      </div>
+      <div class="chip">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Blanchard
+      </div>
+      <div class="chip">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Tuttle
+      </div>
+      <div class="chip">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Chickasha
+      </div>
+      <div class="chip">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Mustang
+      </div>
+      <div class="chip">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Yukon
+      </div>
+      <div class="chip">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Moore
+      </div>
+      <div class="chip">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Norman
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ QUOTE FORM ══════════════════ -->
+<section id="inspection">
+  <div class="form-wrapper">
+    <span class="eyebrow">Free Inspection</span>
+    <h2 class="section-title">Schedule Your Free<br>Roof Inspection</h2>
+    <p class="section-lead">Storm damage, aging shingles, or just peace of mind — schedule a free inspection with Kirk today. No pressure, no obligation, just honest answers.</p>
+
+    <form class="quote-form" id="quoteForm">
+
+      <div class="form-row two">
+        <div class="form-group">
+          <label for="fname">First Name</label>
+          <input type="text" id="fname" name="fname" placeholder="John" required autocomplete="given-name">
+        </div>
+        <div class="form-group">
+          <label for="lname">Last Name</label>
+          <input type="text" id="lname" name="lname" placeholder="Smith" required autocomplete="family-name">
+        </div>
+      </div>
+
+      <div class="form-row two">
+        <div class="form-group">
+          <label for="phone">Phone Number</label>
+          <input type="tel" id="phone" name="phone" placeholder="(405) 000-0000" required autocomplete="tel">
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" placeholder="john@email.com" autocomplete="email">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="address">Property Address</label>
+          <input type="text" id="address" name="address" placeholder="123 Main St, Newcastle, OK 73065" required autocomplete="street-address">
+        </div>
+      </div>
+
+      <div class="form-row two">
+        <div class="form-group">
+          <label for="service">Service Needed</label>
+          <select id="service" name="service">
+            <option value="">Select a service…</option>
+            <option>Roof Replacement</option>
+            <option>Hail Damage Assessment</option>
+            <option>Storm Restoration</option>
+            <option>Insurance Claim Assistance</option>
+            <option>Roof Repair</option>
+            <option>Gutters</option>
+            <option>General Inspection</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="insurance">Filing an Insurance Claim?</label>
+          <select id="insurance" name="insurance">
+            <option value="">Select…</option>
+            <option>Yes — I have a claim open</option>
+            <option>Yes — I need help filing one</option>
+            <option>No — paying out of pocket</option>
+            <option>Not sure yet</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="message">Additional Details (Optional)</label>
+          <textarea id="message" name="message" placeholder="Describe any damage, leaks, or concerns you've noticed…"></textarea>
+        </div>
+      </div>
+
+      <button type="submit" class="form-submit" id="submitBtn">
+        Schedule My Free Inspection
+      </button>
+
+      <p class="form-fine">
+        By submitting, you agree to be contacted by Red Line Roofing &amp; Construction at the number provided.
+        We respect your privacy and never share your information.
+      </p>
+
+    </form>
+  </div>
+</section>
+
+<!-- ══════════════════ FOOTER ══════════════════ -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+
+      <!-- Brand column -->
+      <div>
+        <!-- Footer logo – inner-roof color matches footer deep bg -->
+        <svg width="176" height="41" viewBox="0 0 480 115"
+             xmlns="http://www.w3.org/2000/svg" overflow="visible">
+          <polygon points="58,88 240,8 422,88" fill="#C0222A"/>
+          <polygon points="95,88 240,30 385,88" fill="#0f1520"/>
+          <rect x="122" y="86" width="236" height="20" fill="none" stroke="white" stroke-width="2"/>
+          <rect x="206" y="50" width="68" height="38" fill="none" stroke="white" stroke-width="2"/>
+          <line x1="240" y1="50" x2="240" y2="88" stroke="white" stroke-width="1.5"/>
+          <line x1="206" y1="69" x2="274" y2="69" stroke="white" stroke-width="1.5"/>
+          <polyline points="58,72 36,72 30,59 23,82 17,63 12,72 -12,72"
+                    fill="none" stroke="#C0222A" stroke-width="2.4"
+                    stroke-linecap="round" stroke-linejoin="round"/>
+          <polyline points="422,72 444,72 450,59 457,82 463,63 468,72 492,72"
+                    fill="none" stroke="#C0222A" stroke-width="2.4"
+                    stroke-linecap="round" stroke-linejoin="round"/>
+          <text x="240" y="112"
+                font-family="Oswald, sans-serif" font-weight="700"
+                font-size="28" fill="white" text-anchor="middle"
+                letter-spacing="5">REDLINE</text>
+        </svg>
+
+        <p class="footer-brand-desc">
+          Fireman-owned roofing company serving Newcastle and the surrounding
+          Central Oklahoma communities. GAF certified with 20+ years of
+          professional roofing experience.
+        </p>
+
+        <div class="footer-badges">
+          <span class="f-badge red">Licensed #80006415</span>
+          <span class="f-badge gray">GAF Certified</span>
+        </div>
+      </div>
+
+      <!-- Services column -->
+      <div>
+        <h4>Services</h4>
+        <ul class="footer-list">
+          <li><a href="#services">Roof Replacement</a></li>
+          <li><a href="#services">Hail Damage</a></li>
+          <li><a href="#services">Storm Restoration</a></li>
+          <li><a href="#services">Insurance Claims</a></li>
+          <li><a href="#services">Roof Repair</a></li>
+          <li><a href="#services">Gutters</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact column -->
+      <div>
+        <h4>Contact Us</h4>
+        <ul class="footer-list">
+          <li>
+            <a href="tel:4057571627">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.69 12a19.79 19.79 0 01-3.07-8.67A2 2 0 013.6 1.18h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L7.91 8.78a16 16 0 006 6l.96-.96a2 2 0 012.11-.45c.907.34 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+              (405) 757-1627
+            </a>
+          </li>
+          <li>
+            <a href="mailto:info@redlineroofingok.com">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              info@redlineroofingok.com
+            </a>
+          </li>
+          <li>
+            <span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              200 N Main St Unit A<br>Newcastle, OK 73065
+            </span>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <span>© 2025 Red Line Roofing &amp; Construction. All rights reserved.</span>
+      <span>Newcastle, OK · Serving Central Oklahoma</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ══════════════════ MOBILE STICKY BAR ══════════════════ -->
+<div class="sticky-bar" role="navigation" aria-label="Quick actions">
+  <a href="#inspection">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round">
+      <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+    </svg>
+    Free Inspection
+  </a>
+  <a href="tel:4057571627">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round">
+      <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.69 12a19.79 19.79 0 01-3.07-8.67A2 2 0 013.6 1.18h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L7.91 8.78a16 16 0 006 6l.96-.96a2 2 0 012.11-.45c.907.34 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+    </svg>
+    Call Kirk
+  </a>
+</div>
+
+<script>
+  // ── Form submission
+  document.getElementById('quoteForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const btn = document.getElementById('submitBtn');
+    btn.textContent = 'Sending…';
+    btn.disabled = true;
+
+    // Simulate async send (wire up real endpoint before going live)
+    setTimeout(function() {
+      btn.textContent = '✓ Request Received — We\'ll Be in Touch Soon!';
+      btn.style.background = '#16a34a';
+      document.getElementById('quoteForm').reset();
+    }, 1100);
+  });
+
+  // ── Phone number formatting
+  document.getElementById('phone').addEventListener('input', function(e) {
+    var v = e.target.value.replace(/\D/g, '').slice(0, 10);
+    if (v.length >= 7) v = '(' + v.slice(0,3) + ') ' + v.slice(3,6) + '-' + v.slice(6);
+    else if (v.length >= 4) v = '(' + v.slice(0,3) + ') ' + v.slice(3);
+    e.target.value = v;
+  });
+
+  // ── Smooth scroll for all in-page anchors
+  document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+    a.addEventListener('click', function(e) {
+      var target = document.querySelector(a.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        var offset = 68; // nav height
+        var top = target.getBoundingClientRect().top + window.scrollY - offset;
+        window.scrollTo({ top: top, behavior: 'smooth' });
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
